@@ -1,0 +1,112 @@
+/* Basic styling for Bimba Games */
+
+/* Define color variables for light and dark themes */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #4a4a4a;
+    --header-text: #ffffff;
+    --footer-bg: #333333;
+    --footer-text: #cccccc;
+    --card-bg: #f9f9f9;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1e1e1e;
+        --text-color: #e0e0e0;
+        --header-bg: #333333;
+        --header-text: #ffffff;
+        --footer-bg: #2a2a2a;
+        --footer-text: #aaaaaa;
+        --card-bg: #2c2c2c;
+        --card-shadow: rgba(255, 255, 255, 0.1);
+        --link-color: #6bbdff;
+        --link-hover-color: #aaddff;
+    }
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+main {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 15px var(--card-shadow);
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+main h2 {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--link-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+ul#game-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul#game-list li {
+    margin-bottom: 1rem; /* Increased spacing */
+    background-color: var(--bg-color); /* Subtle background for list items */
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px var(--card-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ul#game-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--card-shadow);
+}
+
+ul#game-list a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.2s ease;
+}
+
+ul#game-list a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
+}

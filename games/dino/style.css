@@ -1,0 +1,130 @@
+/* Define color variables for light and dark themes for the game */
+:root {
+    --game-bg-color: #ffffff;
+    --game-bg-color-rgb: 255, 255, 255; /* RGB for transparency */
+    --game-text-color: #333333;
+    --game-border-color: #cccccc;
+    --player-color: #6a5acd; /* SlateBlue */
+    --obstacle-color: #dc3545; /* Danger Red */
+    --ground-color: #8b4513; /* SaddleBrown */
+    --score-color: #555555;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --game-bg-color: #2c2c2c;
+        --game-bg-color-rgb: 44, 44, 44; /* RGB for transparency */
+        --game-text-color: #e0e0e0;
+        --game-border-color: #555555;
+        --player-color: #8a7cfd; /* Lighter SlateBlue */
+        --obstacle-color: #ff6b7a; /* Lighter Red */
+        --ground-color: #a0522d; /* Sienna */
+        --score-color: #bbbbbb;
+    }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--game-bg-color); /* Use variable */
+    margin: 0;
+    flex-direction: column; /* Stack game and link vertically */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+    color: var(--game-text-color); /* Use variable */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.game-container {
+    width: 600px;
+    height: 200px;
+    border: 2px solid var(--game-border-color); /* Use variable */
+    border-radius: 8px; /* Rounded corners */
+    position: relative;
+    overflow: hidden; /* Hide parts of obstacle/ground outside */
+    background-color: var(--game-bg-color); /* Use variable */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    color: var(--game-text-color);
+    background-color: rgba(var(--game-bg-color-rgb), 0.85); /* Use RGB version for transparency, slightly less transparent */
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 20; /* Ensure it's above everything */
+    display: none; /* Hidden by default */
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-family: 'Consolas', 'Courier New', monospace; /* Monospace for score */
+    font-size: 1.5em;
+    color: var(--score-color); /* Use variable */
+    font-weight: bold;
+    z-index: 10; /* Ensure score is above other elements */
+}
+
+#dino {
+    width: 40px;
+    height: 40px;
+    /* Slightly darker gradient */
+    background: linear-gradient(to bottom, var(--player-color) 80%, hsl(var(--player-color-hsl) 10%));
+    border-radius: 5px; /* Slightly rounded */
+    position: absolute;
+    bottom: 0px; /* Align with top of ground */
+    left: 50px;
+    transition: background-color 0.3s ease;
+}
+
+#obstacle {
+    width: 20px;
+    height: 40px;
+    /* Slightly darker gradient */
+    background: linear-gradient(to bottom, var(--obstacle-color) 80%, hsl(var(--obstacle-color-hsl) 10%));
+    border-radius: 3px;
+    position: absolute;
+    bottom: 0px; /* Align with top of ground */
+    right: -30px; /* Start off-screen */
+    transition: background-color 0.3s ease;
+    /* Add animation here if needed, controlled by JS */
+}
+
+#ground {
+    width: 100%;
+    height: 5px;
+    background-color: var(--ground-color); /* Use variable */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: background-color 0.3s ease;
+}
+
+.jump {
+    animation: jump 0.5s linear;
+}
+
+@keyframes jump {
+    0% { bottom: 0px; }
+    50% { bottom: 80px; }
+    100% { bottom: 0px; }
+}
+
+a {
+    color: var(--link-color, #007bff); /* Use main link color if possible, fallback */
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
